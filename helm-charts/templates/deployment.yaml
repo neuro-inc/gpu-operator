@@ -93,6 +93,9 @@ spec:
       - effect: NoSchedule
         key: node-role.kubernetes.io/control-plane
         operator: Equal
+      {{- if .Values.controllerManager.tolerations }}
+      {{- toYaml .Values.controllerManager.tolerations | nindent 6 }}
+      {{- end }}
       volumes:
       - configMap:
           name: {{ include "helm-charts-k8s.fullname" . }}-manager-config

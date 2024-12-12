@@ -1,5 +1,14 @@
 node-feature-discovery:
   enabled: true  # Set to false to disable node-feature-discovery
+  worker:
+    tolerations: {}
+#      - effect: NoSchedule
+#        key: platform.neuromation.io/job
+#        operator: Exists
+#      - effect: NoSchedule
+#        key: amd.com/gpu
+#        operator: Exists
+
 kmm:
   enabled: true  # Set to false to disable kmm
 installdefaultNFDRule: true # default NFD rule will detect amd gpu based on pci vendor ID
@@ -22,6 +31,14 @@ controllerManager:
         cpu: 10m
         memory: 64Mi
   nodeSelector: {}
+  tolerations: {}
+#    - effect: NoSchedule
+#      key: platform.neuromation.io/job
+#      operator: Exists
+#    - effect: NoSchedule
+#      key: amd.com/gpu
+#      operator: Exists
+
   nodeAffinity:
     nodeSelectorTerms:
       - key: node-role.kubernetes.io/control-plane
